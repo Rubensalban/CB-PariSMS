@@ -46,15 +46,15 @@ public class MainActivity extends AppCompatActivity {
         //Fooball Animation
         btn_foot.setAlpha(0f);
         btn_foot.setTranslationY(50);
-        btn_foot.animate().alpha(1f).translationYBy(-50).setDuration(1500);
+        btn_foot.animate().alpha(1f).translationYBy(-50).setDuration(1000);
         //Pmu Animation
         btn_pmu.setAlpha(0f);
         btn_pmu.setTranslationY(50);
-        btn_pmu.animate().alpha(1f).translationYBy(-50).setDuration(2000);
+        btn_pmu.animate().alpha(1f).translationYBy(-50).setDuration(1500);
         //Loto Animation
         btn_loto.setAlpha(0f);
         btn_loto.setTranslationY(50);
-        btn_loto.animate().alpha(1f).translationYBy(-50).setDuration(2500);
+        btn_loto.animate().alpha(1f).translationYBy(-50).setDuration(2000);
 
         //FOOT
         btn_foot.setOnClickListener(new View.OnClickListener() {

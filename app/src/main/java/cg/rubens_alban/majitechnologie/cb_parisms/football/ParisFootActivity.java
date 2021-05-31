@@ -1,5 +1,6 @@
 package cg.rubens_alban.majitechnologie.cb_parisms.football;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -11,6 +12,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -55,6 +58,7 @@ public class ParisFootActivity extends AppCompatActivity {
     private String my_8, my_9, my_10;
     private EditText ma_mise;
     private int checkedItem;
+    private int checkedItemPreogramme = -1;
     private ProgressBar progressBar;
     private ProgressDialog progressDialog;
     private Toolbar toolbar;
@@ -121,7 +125,9 @@ public class ParisFootActivity extends AppCompatActivity {
 
         // Toolbar
         setSupportActionBar(toolbar);
-        setTitle(getString(R.string.app_name));
+        getSupportActionBar().setTitle(getString(R.string.app_name));
+
+
         //Linearlayout Animation
         linearLayout = findViewById(R.id.linearLayout2);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.linear_in);
@@ -132,31 +138,31 @@ public class ParisFootActivity extends AppCompatActivity {
         cardView_1.animate().alpha(1f).translationYBy(-50).setDuration(1000);
         cardView_2.setAlpha(0f);
         cardView_2.setTranslationY(50);
-        cardView_2.animate().alpha(1f).translationYBy(-50).setDuration(1500);
+        cardView_2.animate().alpha(1f).translationYBy(-50).setDuration(1200);
         cardView_3.setAlpha(0f);
         cardView_3.setTranslationY(50);
-        cardView_3.animate().alpha(1f).translationYBy(-50).setDuration(2000);
+        cardView_3.animate().alpha(1f).translationYBy(-50).setDuration(1400);
         cardView_4.setAlpha(0f);
         cardView_4.setTranslationY(50);
-        cardView_4.animate().alpha(1f).translationYBy(-50).setDuration(2500);
+        cardView_4.animate().alpha(1f).translationYBy(-50).setDuration(1600);
         cardView_5.setAlpha(0f);
         cardView_5.setTranslationY(50);
-        cardView_5.animate().alpha(1f).translationYBy(-50).setDuration(3000);
+        cardView_5.animate().alpha(1f).translationYBy(-50).setDuration(1800);
         cardView_6.setAlpha(0f);
         cardView_6.setTranslationY(50);
-        cardView_6.animate().alpha(1f).translationYBy(-50).setDuration(3500);
+        cardView_6.animate().alpha(1f).translationYBy(-50).setDuration(2000);
         cardView_7.setAlpha(0f);
         cardView_7.setTranslationY(50);
-        cardView_7.animate().alpha(1f).translationYBy(-50).setDuration(4000);
+        cardView_7.animate().alpha(1f).translationYBy(-50).setDuration(2200);
         cardView_8.setAlpha(0f);
         cardView_8.setTranslationY(50);
-        cardView_8.animate().alpha(1f).translationYBy(-50).setDuration(4500);
+        cardView_8.animate().alpha(1f).translationYBy(-50).setDuration(2400);
         cardView_9.setAlpha(0f);
         cardView_9.setTranslationY(50);
-        cardView_9.animate().alpha(1f).translationYBy(-50).setDuration(5000);
+        cardView_9.animate().alpha(1f).translationYBy(-50).setDuration(2600);
         cardView_10.setAlpha(0f);
         cardView_10.setTranslationY(50);
-        cardView_10.animate().alpha(1f).translationYBy(-50).setDuration(5500);
+        cardView_10.animate().alpha(1f).translationYBy(-50).setDuration(2800);
 
         // ProgressDialog
         progressDialog = new ProgressDialog(this);
@@ -954,6 +960,90 @@ public class ParisFootActivity extends AppCompatActivity {
                 } else { Toast.makeText(this, getString(R.string.mise_autorise), Toast.LENGTH_SHORT).show(); }
             } else { Toast.makeText(this, getString(R.string.please_select), Toast.LENGTH_SHORT).show(); }
         } else { Toast.makeText(this, getString(R.string.identik), Toast.LENGTH_SHORT).show(); }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_menu_right:
+                showPrograme();
+                break;
+        }
+        return true;
+    }
+
+    private void showPrograme() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(ParisFootActivity.this);
+        String[] items = {"Bundesliga", "Liga", "Ligue 1", "Premier League", "Serie A", "Ligue des Champions", "Europa League"};
+        alertDialog.setSingleChoiceItems(items, checkedItemPreogramme, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String programme = "";
+                switch (which) {
+                    case 0:
+                        programme = "Bundesliga";
+                        send_sms_for_programe(programme);
+                        dialog.dismiss();
+                        break;
+                    case 1:
+                        programme = "Liga";
+                        send_sms_for_programe(programme);
+                        dialog.dismiss();
+                        break;
+                    case 2:
+                        programme = "Ligue 1";
+                        send_sms_for_programe(programme);
+                        dialog.dismiss();
+                        break;
+                    case 3:
+                        programme = "Premier League";
+                        send_sms_for_programe(programme);
+                        dialog.dismiss();
+                        break;
+                    case 4:
+                        programme = "Serie A";
+                        send_sms_for_programe(programme);
+                        dialog.dismiss();
+                        break;
+                    case 5:
+                        programme = "Ligue des Champions";
+                        send_sms_for_programe(programme);
+                        dialog.dismiss();
+                        break;
+                    case 6:
+                        programme = "Europa League";
+                        send_sms_for_programe(programme);
+                        dialog.dismiss();
+                        break;
+                }
+            }
+        });
+        AlertDialog alert = alertDialog.create();
+        alert.setCanceledOnTouchOutside(true);
+        alert.show();
+    }
+
+    private void send_sms_for_programe(String programme) {
+        if (!programme.isEmpty()) {
+            String my_network = btn_network.getText().toString();
+            if (my_network.equals("MTN")) {
+                Uri uriSms =  Uri.parse("smsto:" + getString(R.string.mtn_number));
+                Intent sms_intent = new Intent(Intent.ACTION_SENDTO, uriSms);
+                sms_intent.putExtra("sms_body", programme);
+                startActivity(sms_intent);
+            } else {
+                Uri uriSms =  Uri.parse("smsto:" + getString(R.string.airtel_number));
+                Intent sms_intent = new Intent(Intent.ACTION_SENDTO, uriSms);
+                sms_intent.putExtra("sms_body", programme);
+                startActivity(sms_intent);
+            }
+        }
     }
 
     @Override

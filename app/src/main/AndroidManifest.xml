@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CBPariSMS">
-        <activity android:name=".football.ParisFootActivity"></activity>
+        <activity
+            android:name=".football.ParisFootActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
